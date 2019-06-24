@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "./dist/main.js",
   "scripts": {
-	"prepare": "npm run build",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build",
     "dev": "NODE_ENV=development webpack-dev-server --mode development ./src/viewer.js --host=0.0.0.0",
     "build": "webpack --mode production"
