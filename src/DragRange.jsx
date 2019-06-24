@@ -2,6 +2,9 @@ import React from "react"
 import ReactDOM from "react-dom"
 import PropTypes from "prop-types"
 
+import { TouchHandler } from "./TouchHandler"
+const touchHandler = new TouchHandler (document)
+
 export default class DragRange extends React.Component {
   static propTypes = {
     "yAxis": PropTypes.bool,   // default is x
@@ -142,7 +145,7 @@ export default class DragRange extends React.Component {
     return null
   }
 
-  componentWillReceiveProps = (nextProps) => {
+  UNSAFE_componentWillReceiveProps = (nextProps) => {
     this.handleSetTarget (nextProps)
   }
 
@@ -250,11 +253,13 @@ export default class DragRange extends React.Component {
 
     document.addEventListener ("mousemove", this.handleMouseMove)
     document.addEventListener ("mouseup", this.handleMouseUp)
+    touchHandler.init ()
   }
 
   componentWillUnmount = () => {
     document.removeEventListener ("mousemove", this.handleMouseMove)
     document.removeEventListener ("mouseup", this.handleMouseUp)
+    touchHandler.deinit ()
 
     if (this.state.target)
       this.state.target.removeEventListener ("mousedown", this.handleMouseDown)
