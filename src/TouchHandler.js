@@ -28,7 +28,9 @@ export class TouchHandler {
     )
 
     first.target.dispatchEvent (simulatedEvent)
-    event.preventDefault ()
+
+    //TODO: test mobile scroll scenarios where preventDefault may be needed.
+    //event.preventDefault ()
   }
 
   init = () => {
